@@ -8,7 +8,7 @@ import android.view.View;
 
 public interface CityPickerListener {
 
-    void onCityConfirm(String options1, String options2, String options3, View v);
-    void onCityChange(String options1, String options2, String options3);
+    void onCityConfirm(String province, String city, String area, View v);
+    void onCityChange(String province, String city, String area);
 
 }

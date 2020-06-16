@@ -58,14 +58,14 @@ public class MainActivity extends AppCompatActivity {
                 CityPickerPopup popup = new CityPickerPopup(MainActivity.this);
                 popup.setCityPickerListener(new CityPickerListener() {
                     @Override
-                    public void onCityConfirm(String options1, String options2, String options3, View v) {
-                        Log.e("tag", options1 +" - " +options2+" - " +options3);
-                        Toast.makeText(MainActivity.this, options1 +" - " +options2+" - " +options3, Toast.LENGTH_SHORT).show();
+                    public void onCityConfirm(String province, String city, String area, View v) {
+                        Log.e("tag", province +" - " +city+" - " +area);
+                        Toast.makeText(MainActivity.this, province +" - " +city+" - " +area, Toast.LENGTH_SHORT).show();
                     }
                     @Override
-                    public void onCityChange(String options1, String options2, String options3) {
-                        Log.e("tag", options1 +" - " +options2+" - " +options3);
-                        Toast.makeText(MainActivity.this, options1 +" - " +options2+" - " +options3, Toast.LENGTH_SHORT).show();
+                    public void onCityChange(String province, String city, String area) {
+                        Log.e("tag", province +" - " +city+" - " +area);
+                        Toast.makeText(MainActivity.this, province +" - " +city+" - " +area, Toast.LENGTH_SHORT).show();
                     }
                 });
                 new XPopup.Builder(MainActivity.this)
