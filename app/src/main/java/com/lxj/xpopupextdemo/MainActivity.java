@@ -10,6 +10,7 @@ import com.lxj.xpopup.XPopup;
 import com.lxj.xpopupext.listener.TimePickerListener;
 import com.lxj.xpopupext.popup.TimePickerPopup;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,8 +23,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnTimer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new XPopup.Builder(MainActivity.this)
-                        .asCustom(new TimePickerPopup(MainActivity.this)
+                Calendar date = Calendar.getInstance();
+                date.set(2000, 5,1);
+                Calendar date2 = Calendar.getInstance();
+                date2.set(2020, 5,1);
+                TimePickerPopup popup = new TimePickerPopup(MainActivity.this)
+//                        .setDefaultDate(date)  //设置默认选中日期
+//                        .setYearRange(1990, 1999) //设置年份范围
+//                        .setDateRang(date, date2) //设置日期范围
                         .setTimePickerListener(new TimePickerListener() {
                             @Override
                             public void onTimeChanged(Date date) {
@@ -34,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
                                 //点击确认时间
                                 Toast.makeText(MainActivity.this, "选择的时间："+date.toLocaleString(), Toast.LENGTH_SHORT).show();
                             }
-                        })
-                        )
+                        });
+
+                new XPopup.Builder(MainActivity.this)
+                        .asCustom(popup)
                         .show();
             }
         });

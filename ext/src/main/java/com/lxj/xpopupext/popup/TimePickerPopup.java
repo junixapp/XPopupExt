@@ -166,6 +166,11 @@ public class TimePickerPopup extends BottomPopupView {
         return this;
     }
 
+    /**
+     * 是否是农历
+     * @param isLunar
+     * @return
+     */
     public TimePickerPopup setLunar(boolean isLunar){
         this.isLunar = isLunar;
         return this;
@@ -182,24 +187,24 @@ public class TimePickerPopup extends BottomPopupView {
     /**
      * 设置默认时间
      */
-    public TimePickerPopup setDate(Calendar date) {
+    public TimePickerPopup setDefaultDate(Calendar date) {
         this.date = date;
         return this;
     }
 
     /**
-     * 设置可以选择的时间范围, 要在setTime之前调用才有效果
+     * 设置年份范围
      */
-    private TimePickerPopup setRange(int startYear, int endYear) {
+    public TimePickerPopup setYearRange(int startYear, int endYear) {
         this.startYear = startYear;
         this.endYear = endYear;
         return this;
     }
 
     /**
-     * 设置可以选择的时间范围, 要在setTime之前调用才有效果
+     * 设置可以选择的时间范围
      */
-    private TimePickerPopup setRangDate(Calendar startDate, Calendar endDate) {
+    public TimePickerPopup setDateRang(Calendar startDate, Calendar endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         return this;

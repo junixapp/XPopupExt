@@ -29,7 +29,7 @@ publish {
     userOrg = 'li-xiaojun'
     groupId = 'com.lxj'
     artifactId = 'xpopup-ext'
-    publishVersion = '0.0.1'
+    publishVersion = '0.0.2'
     repoName = 'jrepo'
     desc = 'XPopup扩展功能库'
     website = 'https://github.com/li-xiaojun/XPopuExt'
