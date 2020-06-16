@@ -1,5 +1,5 @@
 # XPopupExt
-XPopupExt是XPopup的扩展功能库，基础XPopup强大的弹窗能力，封装的一些时间选择器弹窗。
+XPopupExt是XPopup的扩展功能库，由于对PickerView自身的UI和交互不满意，就结合XPopup强大的弹窗能力和PickerView的选择器逻辑，封装的了新的选择器弹窗和城市选择器弹窗。
 
 ## 演示
 ![](gif/preview.gif)
@@ -13,7 +13,7 @@ implementation 'com.lxj:xpopup-ext:最新版本'
 implementation 'com.lxj:xpopup:2.0.2'
 ```
 
-- 提供了TimerPickerPopup弹窗，使用示例:
+- 时间选择器TimerPickerPopup弹窗，使用示例:
 ```java
 Calendar date = Calendar.getInstance();
 date.set(2000, 5,1);
@@ -41,6 +41,22 @@ new XPopup.Builder(MainActivity.this)
 ```
 `TimerPickerPopup`还提供了一些设置方法，具体看方法说明即可。
 
-
-## TODO
-- 增加城市选择器
+- 城市选择器，CityPickerPopup弹窗使用示例：
+```java
+CityPickerPopup popup = new CityPickerPopup(MainActivity.this);
+popup.setCityPickerListener(new CityPickerListener() {
+    @Override
+    public void onCityConfirm(String options1, String options2, String options3, View v) {
+        Log.e("tag", options1 +" - " +options2+" - " +options3);
+        Toast.makeText(MainActivity.this, options1 +" - " +options2+" - " +options3, Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onCityChange(String options1, String options2, String options3) {
+        Log.e("tag", options1 +" - " +options2+" - " +options3);
+        Toast.makeText(MainActivity.this, options1 +" - " +options2+" - " +options3, Toast.LENGTH_SHORT).show();
+    }
+});
+new XPopup.Builder(MainActivity.this)
+        .asCustom(popup)
+        .show();
+```

@@ -3,11 +3,14 @@ package com.lxj.xpopupextdemo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.lxj.xpopup.XPopup;
+import com.lxj.xpopupext.listener.CityPickerListener;
 import com.lxj.xpopupext.listener.TimePickerListener;
+import com.lxj.xpopupext.popup.CityPickerPopup;
 import com.lxj.xpopupext.popup.TimePickerPopup;
 
 import java.util.Calendar;
@@ -43,6 +46,28 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
+                new XPopup.Builder(MainActivity.this)
+                        .asCustom(popup)
+                        .show();
+            }
+        });
+
+        findViewById(R.id.btnCity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CityPickerPopup popup = new CityPickerPopup(MainActivity.this);
+                popup.setCityPickerListener(new CityPickerListener() {
+                    @Override
+                    public void onCityConfirm(String options1, String options2, String options3, View v) {
+                        Log.e("tag", options1 +" - " +options2+" - " +options3);
+                        Toast.makeText(MainActivity.this, options1 +" - " +options2+" - " +options3, Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onCityChange(String options1, String options2, String options3) {
+                        Log.e("tag", options1 +" - " +options2+" - " +options3);
+                        Toast.makeText(MainActivity.this, options1 +" - " +options2+" - " +options3, Toast.LENGTH_SHORT).show();
+                    }
+                });
                 new XPopup.Builder(MainActivity.this)
                         .asCustom(popup)
                         .show();
