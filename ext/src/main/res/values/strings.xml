@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="_xpopup_ext_year">年</string>
+    <string name="_xpopup_ext_month">月</string>
+    <string name="_xpopup_ext_day">日</string>
+    <string name="_xpopup_ext_hours">时</string>
+    <string name="_xpopup_ext_minutes">分</string>
+    <string name="_xpopup_ext_seconds">秒</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="_xpopup_ext_year"> </string>
+    <string name="_xpopup_ext_month"> </string>
+    <string name="_xpopup_ext_day"> </string>
+    <string name="_xpopup_ext_hours"> </string>
+    <string name="_xpopup_ext_minutes"> </string>
+    <string name="_xpopup_ext_seconds"> </string>
+</resources>
