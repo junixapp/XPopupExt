@@ -5,9 +5,10 @@ XPopupExt是XPopup的扩展功能库，基础XPopup强大的弹窗能力，封�
 ![](gif/preview.gif)
 
 ## 使用
+![Download](https://api.bintray.com/packages/li-xiaojun/jrepo/xpopup-ext/images/download.svg)
 - 添加依赖
 ```
-implementation 'com.lxj:xpopup-ext:0.0.1'
+implementation 'com.lxj:xpopup-ext:最新版本'
 //由于扩展库依赖XPopup才能正常使用，所以还必须添加XPopup依赖
 implementation 'com.lxj:xpopup:2.0.2'
 ```
