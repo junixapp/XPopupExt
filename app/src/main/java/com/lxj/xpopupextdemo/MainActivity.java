@@ -27,10 +27,11 @@ public class MainActivity extends AppCompatActivity {
                         .setTimePickerListener(new TimePickerListener() {
                             @Override
                             public void onTimeChanged(Date date) {
-
+                                //时间改变
                             }
                             @Override
                             public void onTimeConfirm(Date date, View view) {
+                                //点击确认时间
                                 Toast.makeText(MainActivity.this, "选择的时间："+date.toLocaleString(), Toast.LENGTH_SHORT).show();
                             }
                         })

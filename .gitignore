@@ -11,4 +11,4 @@
 /build
 /captures
 .externalNativeBuild
-.cxx
+bintray.sh
