@@ -1,4 +1,4 @@
 include ':ext'
 include ':app'
-include ':wheelview'
+//include ':wheelview'
 rootProject.name = "XPopupExt"
