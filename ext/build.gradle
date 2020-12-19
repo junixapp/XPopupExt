@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 19
@@ -23,7 +23,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.lxj:xpopup:2.0.2'               //弹窗
+    implementation 'com.lxj:xpopup:2.2.12'               //弹窗
 //    api project(':wheelview')
     implementation 'com.contrarywind:wheelview:4.1.0'
 }
@@ -31,7 +31,7 @@ publish {
     userOrg = 'li-xiaojun'
     groupId = 'com.lxj'
     artifactId = 'xpopup-ext'
-    publishVersion = '0.0.3'
+    publishVersion = '0.0.4'
     repoName = 'jrepo'
     desc = 'XPopup扩展功能库'
     website = 'https://github.com/li-xiaojun/XPopupExt'
