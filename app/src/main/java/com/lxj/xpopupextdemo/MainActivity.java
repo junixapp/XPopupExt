@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 Calendar date2 = Calendar.getInstance();
                 date2.set(2020, 5,1);
                 TimePickerPopup popup = new TimePickerPopup(MainActivity.this)
+//                        .setMode(TimePickerPopup.Mode.YMDHMS)
 //                        .setDefaultDate(date)  //设置默认选中日期
 //                        .setYearRange(1990, 1999) //设置年份范围
 //                        .setDateRang(date, date2) //设置日期范围

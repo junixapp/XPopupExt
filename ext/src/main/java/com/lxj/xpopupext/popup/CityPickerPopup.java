@@ -2,6 +2,7 @@ package com.lxj.xpopupext.popup;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -77,9 +78,14 @@ public class CityPickerPopup extends BottomPopupView {
             wheelOptions.setOptionsSelectChangeListener(new OnOptionsSelectListener() {
                 @Override
                 public void onOptionsSelect(int options1, int options2, int options3) {
-                    cityPickerListener.onCityChange(options1Items.get(options1),
-                            options2Items.get(options1).get(options2),
-                            options3Items.get(options1).get(options2).get(options3));
+                    if(options1>=options1Items.size())return;
+                    if(options1>=options2Items.size() || options2>=options2Items.get(options1).size())return;
+                    if(options1>=options3Items.size() || options2>=options3Items.get(options1).size()
+                    || options3>=options3Items.get(options1).get(options2).size())return;
+                    String province = options1Items.get(options1);
+                    String city = options2Items.get(options1).get(options2);
+                    String area = options3Items.get(options1).get(options2).get(options3);
+                    cityPickerListener.onCityChange(province,city, area);
                 }
             });
         }
