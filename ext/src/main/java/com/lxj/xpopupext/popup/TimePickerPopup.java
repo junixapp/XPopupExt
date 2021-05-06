@@ -204,7 +204,7 @@ public class TimePickerPopup extends BottomPopupView {
     /**
      * 设置可以选择的时间范围
      */
-    public TimePickerPopup setDateRang(Calendar startDate, Calendar endDate) {
+    public TimePickerPopup setDateRange(Calendar startDate, Calendar endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         return this;

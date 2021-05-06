@@ -23,7 +23,6 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.lxj:xpopup:2.0.2'       //弹窗
+    implementation 'com.github.li-xiaojun:XPopup:2.2.25'
     implementation project(":ext")
-//    implementation 'com.lxj:xpopup-ext:0.0.3'
 }

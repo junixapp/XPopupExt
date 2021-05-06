@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopupext.listener.CityPickerListener;
 import com.lxj.xpopupext.listener.TimePickerListener;
@@ -32,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
                 date2.set(2020, 5,1);
                 TimePickerPopup popup = new TimePickerPopup(MainActivity.this)
 //                        .setMode(TimePickerPopup.Mode.YMDHMS)
-//                        .setDefaultDate(date)  //设置默认选中日期
+                        .setDefaultDate(date)  //设置默认选中日期
 //                        .setYearRange(1990, 1999) //设置年份范围
-//                        .setDateRang(date, date2) //设置日期范围
+                        .setDateRange(date, date2) //设置日期范围
                         .setTimePickerListener(new TimePickerListener() {
                             @Override
                             public void onTimeChanged(Date date) {
