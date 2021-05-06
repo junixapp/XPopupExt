@@ -5,12 +5,22 @@ XPopupExt是XPopup的扩展功能库，由于对PickerView自身的UI和交互�
 ![](gif/preview.gif)
 
 ## 使用
-![Download](https://api.bintray.com/packages/li-xiaojun/jrepo/xpopup-ext/images/download.svg)
+[![](https://jitpack.io/v/li-xiaojun/XPopupExt.svg)](https://jitpack.io/#li-xiaojun/XPopupExt)
 - 添加依赖
 ```
-implementation 'com.lxj:xpopup-ext:最新版本'
+implementation 'com.github.li-xiaojun:XPopupExt:最新版本看上面'
 //由于扩展库依赖XPopup才能正常使用，所以还必须添加XPopup依赖
 implementation 'com.github.li-xiaojun:XPopup:2.2.25'
+```
+
+**Add it in your root build.gradle at the end of repositories:**
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
 
 - 时间选择器TimerPickerPopup弹窗，使用示例:
