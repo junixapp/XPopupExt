@@ -140,7 +140,7 @@ public class TimePickerPopup extends BottomPopupView {
         }
 
         setTime();
-        wheelTime.setLabels("年", "月", "日", "时", "分", "秒");
+        if(showLabel) wheelTime.setLabels("年", "月", "日", "时", "分", "秒");
         wheelTime.setItemsVisible(itemsVisibleCount);
         wheelTime.setAlphaGradient(true);
         wheelTime.setCyclic(true);
@@ -150,6 +150,16 @@ public class TimePickerPopup extends BottomPopupView {
         wheelTime.setTextColorOut(textColorOut);
         wheelTime.setTextColorCenter(textColorCenter);
         wheelTime.isCenterLabel(false);
+    }
+
+    boolean showLabel = true;
+    /**
+     * 是否显示年月日字样
+     * @return
+     */
+    public TimePickerPopup setShowLabel(boolean showLabel){
+        this.showLabel = showLabel
+        return this;
     }
 
     public TimePickerPopup setTimePickerListener(TimePickerListener listener){
