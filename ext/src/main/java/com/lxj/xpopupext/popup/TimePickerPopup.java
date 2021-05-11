@@ -140,7 +140,12 @@ public class TimePickerPopup extends BottomPopupView {
         }
 
         setTime();
-        if(showLabel) wheelTime.setLabels("年", "月", "日", "时", "分", "秒");
+        if(showLabel) wheelTime.setLabels(getResources().getString(R.string._xpopup_ext_year),
+                getResources().getString(R.string._xpopup_ext_month),
+                getResources().getString(R.string._xpopup_ext_day),
+                getResources().getString(R.string._xpopup_ext_hours),
+                getResources().getString(R.string._xpopup_ext_minutes),
+                getResources().getString(R.string._xpopup_ext_seconds));
         wheelTime.setItemsVisible(itemsVisibleCount);
         wheelTime.setAlphaGradient(true);
         wheelTime.setCyclic(true);
@@ -158,7 +163,7 @@ public class TimePickerPopup extends BottomPopupView {
      * @return
      */
     public TimePickerPopup setShowLabel(boolean showLabel){
-        this.showLabel = showLabel
+        this.showLabel = showLabel;
         return this;
     }
 
