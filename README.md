@@ -69,7 +69,7 @@ popup.setCityPickerListener(new CityPickerListener() {
 new XPopup.Builder(MainActivity.this)
         .asCustom(popup)
         .show();
-
+```
 
 - 通用列表选择器
 ```java
