@@ -69,4 +69,24 @@ popup.setCityPickerListener(new CityPickerListener() {
 new XPopup.Builder(MainActivity.this)
         .asCustom(popup)
         .show();
+
+
+- 通用列表选择器
+```java
+CommonPickerPopup popup = new CommonPickerPopup(MainActivity.this);
+ArrayList<String> list = new ArrayList<String>();
+list.add("小猫");
+list.add("小狗");
+list.add("小羊");
+popup.setPickerData(list)
+        .setCurrentItem(1);
+popup.setCommonPickerListener(new CommonPickerListener() {
+    @Override
+    public void onItemSelected(int index, String data) {
+        Toast.makeText(MainActivity.this, "选中的是 "+ data, Toast.LENGTH_SHORT).show();
+    }
+});
+new XPopup.Builder(MainActivity.this)
+        .asCustom(popup)
+        .show();
 ```

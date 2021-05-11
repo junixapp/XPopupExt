@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.Toast;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopupext.listener.CityPickerListener;
+import com.lxj.xpopupext.listener.CommonPickerListener;
 import com.lxj.xpopupext.listener.TimePickerListener;
 import com.lxj.xpopupext.popup.CityPickerPopup;
+import com.lxj.xpopupext.popup.CommonPickerPopup;
 import com.lxj.xpopupext.popup.TimePickerPopup;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -66,6 +69,28 @@ public class MainActivity extends AppCompatActivity {
                     public void onCityChange(String province, String city, String area) {
                         Log.e("tag", province +" - " +city+" - " +area);
                         Toast.makeText(MainActivity.this, province +" - " +city+" - " +area, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                new XPopup.Builder(MainActivity.this)
+                        .asCustom(popup)
+                        .show();
+            }
+        });
+
+        findViewById(R.id.btnCommon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonPickerPopup popup = new CommonPickerPopup(MainActivity.this);
+                ArrayList<String> list = new ArrayList<String>();
+                list.add("小猫");
+                list.add("小狗");
+                list.add("小羊");
+                popup.setPickerData(list)
+                        .setCurrentItem(1);
+                popup.setCommonPickerListener(new CommonPickerListener() {
+                    @Override
+                    public void onItemSelected(int index, String data) {
+                        Toast.makeText(MainActivity.this, "选中的是 "+ data, Toast.LENGTH_SHORT).show();
                     }
                 });
                 new XPopup.Builder(MainActivity.this)

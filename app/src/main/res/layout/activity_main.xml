@@ -17,5 +17,10 @@
         android:text="显示城市选择器"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btnCommon"
+        android:text="显示通用列表选择器"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

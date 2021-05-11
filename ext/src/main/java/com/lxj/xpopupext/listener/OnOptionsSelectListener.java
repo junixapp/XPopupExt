@@ -1,7 +1,5 @@
 package com.lxj.xpopupext.listener;
 
-import android.view.View;
-
 /**
  * Created by xiaosong on 2018/3/20.
  */
