@@ -1,6 +1,7 @@
 package com.lxj.xpopupext.popup;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import com.contrarywind.view.WheelView;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BottomPopupView;
+import com.lxj.xpopup.util.XPopupUtils;
 import com.lxj.xpopupext.R;
 import com.lxj.xpopupext.listener.ISelectTimeCallback;
 import com.lxj.xpopupext.listener.TimePickerListener;
@@ -65,16 +67,18 @@ public class TimePickerPopup extends BottomPopupView {
         }
     }
 
+    TextView btnCancel, btnConfirm;
     @Override
     protected void onCreate() {
         super.onCreate();
-        findViewById(R.id.btnCancel).setOnClickListener(new OnClickListener() {
+        btnCancel = findViewById(R.id.btnCancel);
+        btnConfirm = findViewById(R.id.btnConfirm);
+        btnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
-        TextView btnConfirm = findViewById(R.id.btnConfirm);
         btnConfirm.setTextColor(XPopup.getPrimaryColor());
         btnConfirm.setOnClickListener(new OnClickListener() {
             @Override
@@ -91,6 +95,29 @@ public class TimePickerPopup extends BottomPopupView {
             }
         });
         initWheelTime((LinearLayout) findViewById(R.id.timepicker));
+        if(popupInfo.isDarkTheme){
+            applyDarkTheme();
+        }else {
+            applyLightTheme();
+        }
+    }
+
+    @Override
+    protected void applyDarkTheme() {
+        super.applyDarkTheme();
+        btnCancel.setTextColor(Color.parseColor("#999999"));
+        btnConfirm.setTextColor(Color.parseColor("#ffffff"));
+        getPopupImplView().setBackground(XPopupUtils.createDrawable(getResources().getColor(R.color._xpopup_dark_color),
+                popupInfo.borderRadius, popupInfo.borderRadius, 0,0));
+    }
+
+    @Override
+    protected void applyLightTheme() {
+        super.applyLightTheme();
+        btnCancel.setTextColor(Color.parseColor("#666666"));
+        btnConfirm.setTextColor(Color.parseColor("#222222"));
+        getPopupImplView().setBackground(XPopupUtils.createDrawable(getResources().getColor(R.color._xpopup_light_color),
+                popupInfo.borderRadius, popupInfo.borderRadius, 0,0));
     }
 
     private void initWheelTime(LinearLayout timePickerView) {
@@ -149,11 +176,11 @@ public class TimePickerPopup extends BottomPopupView {
         wheelTime.setItemsVisible(itemsVisibleCount);
         wheelTime.setAlphaGradient(true);
         wheelTime.setCyclic(true);
-        wheelTime.setDividerColor(dividerColor);
+        wheelTime.setDividerColor( popupInfo.isDarkTheme ? Color.parseColor("#444444") : dividerColor);
         wheelTime.setDividerType(WheelView.DividerType.FILL);
         wheelTime.setLineSpacingMultiplier(lineSpace);
         wheelTime.setTextColorOut(textColorOut);
-        wheelTime.setTextColorCenter(textColorCenter);
+        wheelTime.setTextColorCenter(popupInfo.isDarkTheme ? Color.parseColor("#CCCCCC") : textColorCenter);
         wheelTime.isCenterLabel(false);
     }
 

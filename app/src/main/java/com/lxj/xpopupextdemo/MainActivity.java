@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                         });
 
                 new XPopup.Builder(MainActivity.this)
+                        .borderRadius(30)
+//                        .isDarkTheme(true)
                         .asCustom(popup)
                         .show();
             }
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 new XPopup.Builder(MainActivity.this)
+                        .borderRadius(30)
+//                        .isDarkTheme(true)
                         .asCustom(popup)
                         .show();
             }
@@ -94,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 new XPopup.Builder(MainActivity.this)
+                        .borderRadius(30)
+                        .isDarkTheme(true)
                         .asCustom(popup)
                         .show();
             }

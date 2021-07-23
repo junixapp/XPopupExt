@@ -1,6 +1,7 @@
 package com.lxj.xpopupext.popup;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -11,6 +12,7 @@ import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BottomPopupView;
+import com.lxj.xpopup.util.XPopupUtils;
 import com.lxj.xpopupext.R;
 import com.lxj.xpopupext.adapter.ArrayWheelAdapter;
 import com.lxj.xpopupext.listener.CommonPickerListener;
@@ -42,17 +44,19 @@ public class CommonPickerPopup extends BottomPopupView {
         return R.layout._xpopup_ext_common_picker;
     }
 
+    TextView btnCancel, btnConfirm;
     @Override
     protected void onCreate() {
         super.onCreate();
+        btnCancel = findViewById(R.id.btnCancel);
+        btnConfirm = findViewById(R.id.btnConfirm);
         wheelView = findViewById(R.id.commonWheel);
-        findViewById(R.id.btnCancel).setOnClickListener(new OnClickListener() {
+        btnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
-        TextView btnConfirm = findViewById(R.id.btnConfirm);
         btnConfirm.setTextColor(XPopup.getPrimaryColor());
         btnConfirm.setOnClickListener(new OnClickListener() {
             @Override
@@ -70,11 +74,11 @@ public class CommonPickerPopup extends BottomPopupView {
         wheelView.setAlphaGradient(true);
         wheelView.setTextSize(itemTextSize);
         wheelView.setCyclic(false);
-        wheelView.setDividerColor(dividerColor);
+        wheelView.setDividerColor( popupInfo.isDarkTheme ? Color.parseColor("#444444") : dividerColor);
         wheelView.setDividerType(WheelView.DividerType.FILL);
         wheelView.setLineSpacingMultiplier(lineSpace);
         wheelView.setTextColorOut(textColorOut);
-        wheelView.setTextColorCenter(textColorCenter);
+        wheelView.setTextColorCenter(popupInfo.isDarkTheme ? Color.parseColor("#CCCCCC") : textColorCenter);
         wheelView.isCenterLabel(false);
         wheelView.setCurrentItem(currentItem);
         wheelView.setAdapter(new ArrayWheelAdapter<>(list));
@@ -83,6 +87,28 @@ public class CommonPickerPopup extends BottomPopupView {
             public void onItemSelected(int index) {
             }
         });
+        if(popupInfo.isDarkTheme){
+            applyDarkTheme();
+        }else {
+            applyLightTheme();
+        }
+    }
+    @Override
+    protected void applyDarkTheme() {
+        super.applyDarkTheme();
+        btnCancel.setTextColor(Color.parseColor("#999999"));
+        btnConfirm.setTextColor(Color.parseColor("#ffffff"));
+        getPopupImplView().setBackground(XPopupUtils.createDrawable(getResources().getColor(R.color._xpopup_dark_color),
+                popupInfo.borderRadius, popupInfo.borderRadius, 0,0));
+    }
+
+    @Override
+    protected void applyLightTheme() {
+        super.applyLightTheme();
+        btnCancel.setTextColor(Color.parseColor("#666666"));
+        btnConfirm.setTextColor(Color.parseColor("#222222"));
+        getPopupImplView().setBackground(XPopupUtils.createDrawable(getResources().getColor(R.color._xpopup_light_color),
+                popupInfo.borderRadius, popupInfo.borderRadius, 0,0));
     }
     private CommonPickerListener commonPickerListener;
     public CommonPickerPopup setCommonPickerListener(CommonPickerListener commonPickerListener){

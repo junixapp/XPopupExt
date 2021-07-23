@@ -5,7 +5,6 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:background="#f5f5f5"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="40dp">
@@ -43,7 +42,6 @@
 
     <com.contrarywind.view.WheelView
         android:id="@+id/commonWheel"
-        android:background="@android:color/white"
         android:gravity="center"
         android:minHeight="150dp"
         android:layout_width="wrap_content"

@@ -2,6 +2,7 @@ package com.lxj.xpopupext.popup;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import com.contrarywind.view.WheelView;
 import com.google.gson.Gson;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BottomPopupView;
+import com.lxj.xpopup.util.XPopupUtils;
 import com.lxj.xpopupext.R;
 import com.lxj.xpopupext.bean.JsonBean;
 import com.lxj.xpopupext.listener.CityPickerListener;
@@ -46,16 +48,18 @@ public class CityPickerPopup extends BottomPopupView {
         return R.layout._xpopup_ext_city_picker;
     }
 
+    TextView btnCancel, btnConfirm;
     @Override
     protected void onCreate() {
         super.onCreate();
-        findViewById(R.id.btnCancel).setOnClickListener(new OnClickListener() {
+        btnCancel = findViewById(R.id.btnCancel);
+        btnConfirm = findViewById(R.id.btnConfirm);
+        btnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
-        TextView btnConfirm = findViewById(R.id.btnConfirm);
         btnConfirm.setTextColor(XPopup.getPrimaryColor());
         btnConfirm.setOnClickListener(new OnClickListener() {
             @Override
@@ -94,11 +98,11 @@ public class CityPickerPopup extends BottomPopupView {
         wheelOptions.setAlphaGradient(true);
         wheelOptions.setCyclic(false);
 
-        wheelOptions.setDividerColor(dividerColor);
+        wheelOptions.setDividerColor( popupInfo.isDarkTheme ? Color.parseColor("#444444") : dividerColor);
         wheelOptions.setDividerType(WheelView.DividerType.FILL);
         wheelOptions.setLineSpacingMultiplier(lineSpace);
         wheelOptions.setTextColorOut(textColorOut);
-        wheelOptions.setTextColorCenter(textColorCenter);
+        wheelOptions.setTextColorCenter(popupInfo.isDarkTheme ? Color.parseColor("#CCCCCC") : textColorCenter);
         wheelOptions.isCenterLabel(false);
 
         if(!options1Items.isEmpty() && !options2Items.isEmpty() && !options3Items.isEmpty()){
@@ -110,6 +114,29 @@ public class CityPickerPopup extends BottomPopupView {
         }else {
             initJsonData();
         }
+        if(popupInfo.isDarkTheme){
+            applyDarkTheme();
+        }else {
+            applyLightTheme();
+        }
+    }
+
+    @Override
+    protected void applyDarkTheme() {
+        super.applyDarkTheme();
+        btnCancel.setTextColor(Color.parseColor("#999999"));
+        btnConfirm.setTextColor(Color.parseColor("#ffffff"));
+        getPopupImplView().setBackground(XPopupUtils.createDrawable(getResources().getColor(R.color._xpopup_dark_color),
+                popupInfo.borderRadius, popupInfo.borderRadius, 0,0));
+    }
+
+    @Override
+    protected void applyLightTheme() {
+        super.applyLightTheme();
+        btnCancel.setTextColor(Color.parseColor("#666666"));
+        btnConfirm.setTextColor(Color.parseColor("#222222"));
+        getPopupImplView().setBackground(XPopupUtils.createDrawable(getResources().getColor(R.color._xpopup_light_color),
+                popupInfo.borderRadius, popupInfo.borderRadius, 0,0));
     }
 
     public CityPickerPopup setCityPickerListener(CityPickerListener listener){

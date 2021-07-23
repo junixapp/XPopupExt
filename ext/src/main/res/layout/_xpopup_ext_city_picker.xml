@@ -7,7 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:background="#f5f5f5"
         android:orientation="horizontal">
 
         <TextView
@@ -44,7 +43,6 @@
         android:id="@+id/citypicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
         android:gravity="center"
         android:minHeight="150dp"
         android:orientation="horizontal">
