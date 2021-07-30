@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
 import com.contrarywind.view.WheelView;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BottomPopupView;
@@ -24,22 +25,25 @@ import java.util.Date;
 
 public class TimePickerPopup extends BottomPopupView {
 
-    public enum Mode{
-        YMDHMS, YMDHM, YMDH, YMD, YM, Y
+    public enum Mode {
+        YMDHMS, YMDHM, YMDH, YMD, YM, Y, M, H, HM, MM,S
     }
+
     public TimePickerListener timePickerListener;
+    public View mView;
     private Mode mode = Mode.YMD;
     private boolean isLunar = false; //是否是农历
-    private int startYear = 0; 
-    private int endYear = 0; 
+    private int startYear = 0;
+    private int endYear = 0;
     private int itemsVisibleCount = 7;
     private int itemTextSize = 18;
     private Calendar date = Calendar.getInstance();
-    private Calendar startDate,endDate;
+    private Calendar startDate, endDate;
     public int dividerColor = 0xFFd5d5d5; //分割线的颜色
     public float lineSpace = 2.4f; // 条目间距倍数 默认2
     public int textColorOut = 0xFFa8a8a8; //分割线以外的文字颜色
     public int textColorCenter = 0xFF2a2a2a; //分割线之间的文字颜色
+
     public TimePickerPopup(@NonNull Context context) {
         super(context);
     }
@@ -48,26 +52,40 @@ public class TimePickerPopup extends BottomPopupView {
     protected int getImplLayoutId() {
         return R.layout._xpopup_ext_time_picker;
     }
+
     private WheelTime wheelTime; //自定义控件
 
-    public boolean[] mode2type(){
-        switch (mode){
-            case Y:
+    public boolean[] mode2type() {
+        switch (mode) {
+            case Y://年
                 return new boolean[]{true, false, false, false, false, false};
-            case YM:
+            case YM://年、月
                 return new boolean[]{true, true, false, false, false, false};
-            case YMD:
+            case YMD://年、月、日
                 return new boolean[]{true, true, true, false, false, false};
-            case YMDH:
+            case YMDH://年、月、日、时
                 return new boolean[]{true, true, true, true, false, false};
-            case YMDHM:
+            case YMDHM://年、月、日、时、分
                 return new boolean[]{true, true, true, true, true, false};
-            default:
+            case YMDHMS://年、月、日、时、分、秒
+                return new boolean[]{true, true, true, true, true, true};
+            case M://月
+                return new boolean[]{false, true, false, false, false, false};
+            case H://时
+                return new boolean[]{false, false, false, true, true, false};
+            case MM://分
+                return new boolean[]{false, false, false, false, true, false};
+            case S://秒
+                return new boolean[]{false, false, false, false, false, true};
+            case HM://时、分
+                return new boolean[]{false, false, false, true, true, false};
+            default://默认：年、月、日、时、分
                 return new boolean[]{true, true, true, true, true, true};
         }
     }
 
     TextView btnCancel, btnConfirm;
+
     @Override
     protected void onCreate() {
         super.onCreate();
@@ -86,7 +104,7 @@ public class TimePickerPopup extends BottomPopupView {
                 if (timePickerListener != null) {
                     try {
                         Date date = WheelTime.dateFormat.parse(wheelTime.getTime());
-                        timePickerListener.onTimeConfirm(date, v);
+                        timePickerListener.onTimeConfirm(date, mView);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -95,12 +113,14 @@ public class TimePickerPopup extends BottomPopupView {
             }
         });
         initWheelTime((LinearLayout) findViewById(R.id.timepicker));
-        if(popupInfo.isDarkTheme){
+        if (popupInfo.isDarkTheme) {
             applyDarkTheme();
-        }else {
+        } else {
             applyLightTheme();
         }
     }
+
+
 
     @Override
     protected void applyDarkTheme() {
@@ -108,7 +128,7 @@ public class TimePickerPopup extends BottomPopupView {
         btnCancel.setTextColor(Color.parseColor("#999999"));
         btnConfirm.setTextColor(Color.parseColor("#ffffff"));
         getPopupImplView().setBackground(XPopupUtils.createDrawable(getResources().getColor(R.color._xpopup_dark_color),
-                popupInfo.borderRadius, popupInfo.borderRadius, 0,0));
+                popupInfo.borderRadius, popupInfo.borderRadius, 0, 0));
     }
 
     @Override
@@ -117,7 +137,7 @@ public class TimePickerPopup extends BottomPopupView {
         btnCancel.setTextColor(Color.parseColor("#666666"));
         btnConfirm.setTextColor(Color.parseColor("#222222"));
         getPopupImplView().setBackground(XPopupUtils.createDrawable(getResources().getColor(R.color._xpopup_light_color),
-                popupInfo.borderRadius, popupInfo.borderRadius, 0,0));
+                popupInfo.borderRadius, popupInfo.borderRadius, 0, 0));
     }
 
     private void initWheelTime(LinearLayout timePickerView) {
@@ -167,7 +187,7 @@ public class TimePickerPopup extends BottomPopupView {
         }
 
         setTime();
-        if(showLabel) wheelTime.setLabels(getResources().getString(R.string._xpopup_ext_year),
+        if (showLabel) wheelTime.setLabels(getResources().getString(R.string._xpopup_ext_year),
                 getResources().getString(R.string._xpopup_ext_month),
                 getResources().getString(R.string._xpopup_ext_day),
                 getResources().getString(R.string._xpopup_ext_hours),
@@ -176,7 +196,7 @@ public class TimePickerPopup extends BottomPopupView {
         wheelTime.setItemsVisible(itemsVisibleCount);
         wheelTime.setAlphaGradient(true);
         wheelTime.setCyclic(true);
-        wheelTime.setDividerColor( popupInfo.isDarkTheme ? Color.parseColor("#444444") : dividerColor);
+        wheelTime.setDividerColor(popupInfo.isDarkTheme ? Color.parseColor("#444444") : dividerColor);
         wheelTime.setDividerType(WheelView.DividerType.FILL);
         wheelTime.setLineSpacingMultiplier(lineSpace);
         wheelTime.setTextColorOut(textColorOut);
@@ -185,47 +205,58 @@ public class TimePickerPopup extends BottomPopupView {
     }
 
     boolean showLabel = true;
+
     /**
      * 是否显示年月日字样
+     *
      * @return
      */
-    public TimePickerPopup setShowLabel(boolean showLabel){
+    public TimePickerPopup setShowLabel(boolean showLabel) {
         this.showLabel = showLabel;
         return this;
     }
 
-    public TimePickerPopup setTimePickerListener(TimePickerListener listener){
+    public TimePickerPopup setTimePickerListener(TimePickerListener listener) {
         this.timePickerListener = listener;
         return this;
     }
-    public TimePickerPopup setItemTextSize(int textSize){
+
+    public TimePickerPopup setItemTextSize(int textSize) {
         this.itemTextSize = textSize;
         return this;
     }
 
-    public TimePickerPopup setMode(Mode mode){
+    public TimePickerPopup setMode(Mode mode) {
         this.mode = mode;
+        return this;
+    }
+
+    public TimePickerPopup setView(View view) {
+        this.mView = view;
         return this;
     }
 
     /**
      * 是否是农历
+     *
      * @param isLunar
      * @return
      */
-    public TimePickerPopup setLunar(boolean isLunar){
+    public TimePickerPopup setLunar(boolean isLunar) {
         this.isLunar = isLunar;
         return this;
     }
 
-    public TimePickerPopup setItemsVisibleCount(int itemsVisibleCount){
+    public TimePickerPopup setItemsVisibleCount(int itemsVisibleCount) {
         this.itemsVisibleCount = itemsVisibleCount;
         return this;
     }
-    public TimePickerPopup setLineSpace(float lineSpace){
+
+    public TimePickerPopup setLineSpace(float lineSpace) {
         this.lineSpace = lineSpace;
         return this;
     }
+
     /**
      * 设置默认时间
      */
@@ -252,11 +283,12 @@ public class TimePickerPopup extends BottomPopupView {
         return this;
     }
 
-    private void applyYear(){
+    private void applyYear() {
         wheelTime.setStartYear(this.startYear);
         wheelTime.setEndYear(this.endYear);
     }
-    private void applyDateRange(){
+
+    private void applyDateRange() {
         wheelTime.setRangDate(this.startDate, this.endDate);
         initDefaultSelectedDate();
     }
