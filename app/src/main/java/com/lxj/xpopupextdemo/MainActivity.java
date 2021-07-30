@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopupext.listener.CityPickerListener;
 import com.lxj.xpopupext.listener.CommonPickerListener;
@@ -34,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar date = Calendar.getInstance();
-                date.set(2000, 5, 1);
+                date.set(2000, 5,1);
                 Calendar date2 = Calendar.getInstance();
-                date2.set(2020, 5, 1);
+                date2.set(2020, 5,1);
                 TimePickerPopup popup = new TimePickerPopup(MainActivity.this)
 //                        .setMode(TimePickerPopup.Mode.YMDHMS)
                         .setDefaultDate(date)  //设置默认选中日期
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
                             public void onTimeChanged(Date date) {
                                 //时间改变
                             }
-
                             @Override
                             public void onTimeConfirm(Date date, View view) {
                                 //如果一个界面多个地方用到时间选择控件的时候，通过switch (view.getId())就可以判断是那个View
@@ -74,14 +72,13 @@ public class MainActivity extends AppCompatActivity {
                 popup.setCityPickerListener(new CityPickerListener() {
                     @Override
                     public void onCityConfirm(String province, String city, String area, View v) {
-                        Log.e("tag", province + " - " + city + " - " + area);
-                        Toast.makeText(MainActivity.this, province + " - " + city + " - " + area, Toast.LENGTH_SHORT).show();
+                        Log.e("tag", province +" - " +city+" - " +area);
+                        Toast.makeText(MainActivity.this, province +" - " +city+" - " +area, Toast.LENGTH_SHORT).show();
                     }
-
                     @Override
                     public void onCityChange(String province, String city, String area) {
-                        Log.e("tag", province + " - " + city + " - " + area);
-                        Toast.makeText(MainActivity.this, province + " - " + city + " - " + area, Toast.LENGTH_SHORT).show();
+                        Log.e("tag", province +" - " +city+" - " +area);
+                        Toast.makeText(MainActivity.this, province +" - " +city+" - " +area, Toast.LENGTH_SHORT).show();
                     }
                 });
                 new XPopup.Builder(MainActivity.this)
@@ -105,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 popup.setCommonPickerListener(new CommonPickerListener() {
                     @Override
                     public void onItemSelected(int index, String data) {
-                        Toast.makeText(MainActivity.this, "选中的是 " + data, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "选中的是 "+ data, Toast.LENGTH_SHORT).show();
                     }
                 });
                 new XPopup.Builder(MainActivity.this)
