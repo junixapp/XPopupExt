@@ -25,12 +25,13 @@ import java.util.Date;
 public class TimePickerPopup extends BottomPopupView {
 
     public enum Mode{
-        YMDHMS, YMDHM, YMDH, YMD, YM, Y
+        YMDHMS, YMDHM, YMDH, YMD, YM, Y, M, H, HM, MM,S
     }
     public TimePickerListener timePickerListener;
     private Mode mode = Mode.YMD;
     private boolean isLunar = false; //是否是农历
-    private int startYear = 0; 
+    private View mView; //设置点击确认后需要显示文字的View
+    private int startYear = 0;
     private int endYear = 0; 
     private int itemsVisibleCount = 7;
     private int itemTextSize = 18;
@@ -51,18 +52,30 @@ public class TimePickerPopup extends BottomPopupView {
     private WheelTime wheelTime; //自定义控件
 
     public boolean[] mode2type(){
-        switch (mode){
-            case Y:
+        switch (mode) {
+            case Y://年
                 return new boolean[]{true, false, false, false, false, false};
-            case YM:
+            case YM://年、月
                 return new boolean[]{true, true, false, false, false, false};
-            case YMD:
+            case YMD://年、月、日
                 return new boolean[]{true, true, true, false, false, false};
-            case YMDH:
+            case YMDH://年、月、日、时
                 return new boolean[]{true, true, true, true, false, false};
-            case YMDHM:
+            case YMDHM://年、月、日、时、分
                 return new boolean[]{true, true, true, true, true, false};
-            default:
+            case YMDHMS://年、月、日、时、分、秒
+                return new boolean[]{true, true, true, true, true, true};
+            case M://月
+                return new boolean[]{false, true, false, false, false, false};
+            case H://时
+                return new boolean[]{false, false, false, true, true, false};
+            case MM://分
+                return new boolean[]{false, false, false, false, true, false};
+            case S://秒
+                return new boolean[]{false, false, false, false, false, true};
+            case HM://时、分
+                return new boolean[]{false, false, false, true, true, false};
+            default://默认：年、月、日、时、分、秒
                 return new boolean[]{true, true, true, true, true, true};
         }
     }
@@ -86,7 +99,7 @@ public class TimePickerPopup extends BottomPopupView {
                 if (timePickerListener != null) {
                     try {
                         Date date = WheelTime.dateFormat.parse(wheelTime.getTime());
-                        timePickerListener.onTimeConfirm(date, v);
+                        timePickerListener.onTimeConfirm(date, mView);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -240,6 +253,13 @@ public class TimePickerPopup extends BottomPopupView {
     public TimePickerPopup setYearRange(int startYear, int endYear) {
         this.startYear = startYear;
         this.endYear = endYear;
+        return this;
+    }
+    /**
+     * 设置点击确认后需要显示文字的View
+     */
+    public TimePickerPopup setView(View view) {
+        this.mView = view;
         return this;
     }
 
