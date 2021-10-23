@@ -5,14 +5,15 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:orientation="horizontal">
-
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingLeft="15dp"
             android:paddingRight="10dp"
@@ -29,7 +30,7 @@
         <TextView
             android:id="@+id/btnConfirm"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="15dp"
