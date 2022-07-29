@@ -8,4 +8,5 @@ public interface TimePickerListener {
 
     void onTimeChanged(Date date);
     void onTimeConfirm(Date date, View view);
+    void onCancel();
 }

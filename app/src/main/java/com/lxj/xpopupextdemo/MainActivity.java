@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
                                 //点击确认时间
                                 Toast.makeText(MainActivity.this, "选择的时间："+date.toLocaleString(), Toast.LENGTH_SHORT).show();
                             }
+
+                            @Override
+                            public void onCancel() {
+
+                            }
                         });
 
                 new XPopup.Builder(MainActivity.this)
@@ -72,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("tag", province +" - " +city+" - " +area);
                         Toast.makeText(MainActivity.this, province +" - " +city+" - " +area, Toast.LENGTH_SHORT).show();
                     }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
                 });
                 new XPopup.Builder(MainActivity.this)
                         .borderRadius(30)
@@ -96,10 +106,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onItemSelected(int index, String data) {
                         Toast.makeText(MainActivity.this, "选中的是 "+ data, Toast.LENGTH_SHORT).show();
                     }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
                 });
                 new XPopup.Builder(MainActivity.this)
-                        .borderRadius(30)
-                        .isDarkTheme(true)
+//                        .borderRadius(30)
+//                        .isDarkTheme(true)
                         .asCustom(popup)
                         .show();
             }

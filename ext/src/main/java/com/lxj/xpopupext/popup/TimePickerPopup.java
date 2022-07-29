@@ -76,6 +76,7 @@ public class TimePickerPopup extends BottomPopupView {
         btnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (timePickerListener != null) timePickerListener.onCancel();
                 dismiss();
             }
         });

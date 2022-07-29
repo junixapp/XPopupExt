@@ -10,5 +10,6 @@ public interface CityPickerListener {
 
     void onCityConfirm(String province, String city, String area, View v);
     void onCityChange(String province, String city, String area);
+    void onCancel();
 
 }

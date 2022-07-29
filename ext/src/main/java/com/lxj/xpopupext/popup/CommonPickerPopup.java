@@ -54,6 +54,7 @@ public class CommonPickerPopup extends BottomPopupView {
         btnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(commonPickerListener!=null) commonPickerListener.onCancel();
                 dismiss();
             }
         });

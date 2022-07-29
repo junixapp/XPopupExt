@@ -57,6 +57,7 @@ public class CityPickerPopup extends BottomPopupView {
         btnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (cityPickerListener != null) cityPickerListener.onCancel();
                 dismiss();
             }
         });
