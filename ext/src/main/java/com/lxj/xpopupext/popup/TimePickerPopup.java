@@ -33,11 +33,11 @@ public class TimePickerPopup extends BottomPopupView {
     private int startYear = 0; 
     private int endYear = 0; 
     private int itemsVisibleCount = 7;
-    private int itemTextSize = 18;
+    private int itemTextSize = 16;
     private Calendar date = Calendar.getInstance();
     private Calendar startDate,endDate;
     public int dividerColor = 0xFFd5d5d5; //分割线的颜色
-    public float lineSpace = 2.4f; // 条目间距倍数 默认2
+    public float lineSpace = 2.8f; // 条目间距倍数 默认2
     public int textColorOut = 0xFFa8a8a8; //分割线以外的文字颜色
     public int textColorCenter = 0xFF2a2a2a; //分割线之间的文字颜色
     public TimePickerPopup(@NonNull Context context) {

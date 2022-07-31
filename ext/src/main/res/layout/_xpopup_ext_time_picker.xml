@@ -6,8 +6,8 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,8 +16,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingLeft="15dp"
-            android:paddingRight="10dp"
+            android:background="?selectableItemBackground"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
             android:text="@string/xpopup_cancel"
             android:textAllCaps="false"
             android:textColor="@color/_xpopup_dark_color"
@@ -31,8 +34,12 @@
         <TextView
             android:id="@+id/btnConfirm"
             android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="15dp"
+            android:textStyle="bold"
+            android:background="?selectableItemBackground"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
             android:textColor="@color/_xpopup_dark_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

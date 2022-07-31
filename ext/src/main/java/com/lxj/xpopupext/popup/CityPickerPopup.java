@@ -36,7 +36,7 @@ public class CityPickerPopup extends BottomPopupView {
     private CityPickerListener cityPickerListener;
     private WheelOptions wheelOptions;
     public int dividerColor = 0xFFd5d5d5; //分割线的颜色
-    public float lineSpace = 2.4f; // 条目间距倍数 默认2
+    public float lineSpace = 2.8f; // 条目间距倍数 默认2
     public int textColorOut = 0xFFa8a8a8; //分割线以外的文字颜色
     public int textColorCenter = 0xFF2a2a2a; //分割线之间的文字颜色
     public CityPickerPopup(@NonNull Context context) {
@@ -94,7 +94,7 @@ public class CityPickerPopup extends BottomPopupView {
                 }
             });
         }
-        wheelOptions.setTextContentSize(18);
+        wheelOptions.setTextContentSize(16);
         wheelOptions.setItemsVisible(7);
         wheelOptions.setAlphaGradient(true);
         wheelOptions.setCyclic(false);

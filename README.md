@@ -90,3 +90,8 @@ new XPopup.Builder(MainActivity.this)
         .asCustom(popup)
         .show();
 ```
+
+- 混淆
+```
+-keep class com.lxj.xpopupext.bean.** { ; }
+```
