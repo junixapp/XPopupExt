@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopupext.listener.CityPickerListener;
@@ -20,11 +21,14 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button mButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         XPopup.setPrimaryColor(getResources().getColor(R.color.colorPrimary));
+        mButton = findViewById(R.id.btnTimer);
         findViewById(R.id.btnTimer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                         .setDefaultDate(date)  //设置默认选中日期
 //                        .setYearRange(1990, 1999) //设置年份范围
                         .setDateRange(date, date2) //设置日期范围
+                        .setView(mButton)//设置需要显示时间的View，可以把popup声明为成员变量来动态设置View
                         .setTimePickerListener(new TimePickerListener() {
                             @Override
                             public void onTimeChanged(Date date) {
@@ -44,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
                             }
                             @Override
                             public void onTimeConfirm(Date date, View view) {
+                                //如果一个界面有多个地方用到时间选择控件的时候，通过switch (view.getId())就可以判断是那个View
+                                Button mButton = (Button) view;
+                                mButton.setText(date.toLocaleString());
                                 //点击确认时间
                                 Toast.makeText(MainActivity.this, "选择的时间："+date.toLocaleString(), Toast.LENGTH_SHORT).show();
                             }
