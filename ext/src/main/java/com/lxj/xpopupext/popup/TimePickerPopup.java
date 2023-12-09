@@ -30,7 +30,8 @@ public class TimePickerPopup extends BottomPopupView {
     public TimePickerListener timePickerListener;
     private Mode mode = Mode.YMD;
     private boolean isLunar = false; //是否是农历
-    private int startYear = 0; 
+    private boolean cyclic = false;
+    private int startYear = 0;
     private int endYear = 0; 
     private int itemsVisibleCount = 7;
     private int itemTextSize = 16;
@@ -176,7 +177,7 @@ public class TimePickerPopup extends BottomPopupView {
                 getResources().getString(R.string._xpopup_ext_seconds));
         wheelTime.setItemsVisible(itemsVisibleCount);
         wheelTime.setAlphaGradient(true);
-        wheelTime.setCyclic(true);
+        wheelTime.setCyclic(cyclic);
         wheelTime.setDividerColor( popupInfo.isDarkTheme ? Color.parseColor("#444444") : dividerColor);
         wheelTime.setDividerType(WheelView.DividerType.FILL);
         wheelTime.setLineSpacingMultiplier(lineSpace);
@@ -192,6 +193,11 @@ public class TimePickerPopup extends BottomPopupView {
      */
     public TimePickerPopup setShowLabel(boolean showLabel){
         this.showLabel = showLabel;
+        return this;
+    }
+
+    public TimePickerPopup setCyclic(boolean cyclic){
+        this.cyclic = cyclic;
         return this;
     }
 
